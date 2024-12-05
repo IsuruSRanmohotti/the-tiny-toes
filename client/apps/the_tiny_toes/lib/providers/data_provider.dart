@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_tiny_toes/models/album_model.dart';
+import 'package:the_tiny_toes/models/photo_model.dart';
 import 'package:the_tiny_toes/models/user_model.dart';
 
 class DataProvider extends ChangeNotifier {
@@ -9,6 +10,10 @@ class DataProvider extends ChangeNotifier {
   UserModel? get selectedUser => _selectedUser;
   List<AlbumModel> _currentUserAlbums = [];
   List<AlbumModel> get currentUserAlbums => _currentUserAlbums;
+  AlbumModel? _selectedAlbum;
+  AlbumModel? get selectedAlbum => _selectedAlbum;
+  List<PhotoModel> _selectedAlbumPhotos = [];
+  List<PhotoModel> get selectedAlbumPhotos => _selectedAlbumPhotos;
 
   String _currentPage = 'users';
   String get currentPage => _currentPage;
@@ -27,12 +32,24 @@ class DataProvider extends ChangeNotifier {
     _currentPage = page;
     if (page == 'users') {
       _currentUserAlbums = [];
+    } else if (page == 'album') {
+      _selectedAlbumPhotos = [];
     }
     notifyListeners();
   }
 
   void setCurrentUserAlbums(List<AlbumModel> albums) {
     _currentUserAlbums = albums;
+    notifyListeners();
+  }
+
+  void setSelectedAlbum(int index) {
+    _selectedAlbum = _currentUserAlbums[index];
+    notifyListeners();
+  }
+
+  void setSelectedAlbumPhotos(List<PhotoModel> photos) {
+    _selectedAlbumPhotos = photos;
     notifyListeners();
   }
 }
