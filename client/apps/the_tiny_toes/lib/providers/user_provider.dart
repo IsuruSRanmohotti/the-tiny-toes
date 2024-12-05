@@ -39,6 +39,7 @@ class UserProvider extends ChangeNotifier {
           .then(
         (value) {
           if (context.mounted) {
+            _currentUser = _userNameController.text.trim();
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
