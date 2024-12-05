@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_tiny_toes/screens/auth_screen/auth_screen.dart';
 import 'package:the_tiny_toes/utils/custom_dialog.dart';
 import 'package:the_tiny_toes/utils/shared_preferences_utils.dart';
 
@@ -47,5 +48,27 @@ class UserProvider extends ChangeNotifier {
         },
       );
     }
+  }
+
+  Future<void> signOutUser(BuildContext context) async {
+    CustomDialog.cupertinoAlert(
+      context: context,
+      title: 'Are You Sure?',
+      buttonText: 'Logout',
+      cancelButton: 'Cancel',
+      onProceed: () async {
+        await SharedPreferencesUtils.deleteString('currentUser').then(
+          (value) {
+            if (context.mounted) {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const AuthScreen()));
+            }
+          },
+        );
+      },
+      onCancel: () {
+        Navigator.pop(context);
+      },
+    );
   }
 }

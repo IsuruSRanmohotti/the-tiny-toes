@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:the_tiny_toes/providers/user_provider.dart';
 import 'package:the_tiny_toes/screens/auth_screen/auth_screen.dart';
 import 'package:the_tiny_toes/screens/users_screen/users_screen.dart';
 import 'package:the_tiny_toes/utils/shared_preferences_utils.dart';
@@ -17,26 +19,28 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    SharedPreferencesUtils.loadString('currentUser').then((value) {
-         Timer(const Duration(seconds: 3), () {
-      
-      if(value == ''){
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const AuthScreen(),
-          ));
-      }else{
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const UsersScreen(),
-          ));
-      }
-      
-    });
-      },);
-   
+    SharedPreferencesUtils.loadString('currentUser').then(
+      (value) {
+        Timer(const Duration(seconds: 3), () {
+          Provider.of<UserProvider>(context, listen: false)
+              .setCurrentUser(value);
+
+          if (value == '') {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AuthScreen(),
+                ));
+          } else {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const UsersScreen(),
+                ));
+          }
+        });
+      },
+    );
   }
 
   @override
@@ -47,8 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Center(
             child: Hero(
-              tag: 'logo',
-              child: Image.asset('assets/images/tiny_toys.png')),
+                tag: 'logo', child: Image.asset('assets/images/tiny_toys.png')),
           ),
           Align(
             alignment: Alignment.bottomCenter,

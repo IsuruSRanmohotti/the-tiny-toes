@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:the_tiny_toes/providers/data_provider.dart';
 import 'package:the_tiny_toes/providers/user_provider.dart';
-import 'package:the_tiny_toes/screens/auth_screen/auth_screen.dart';
+import 'package:the_tiny_toes/screens/splash_screen/splash_screen.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarIconBrightness: Brightness.dark,
+    statusBarColor: Colors.transparent,
+  ));
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
         create: (context) => UserProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => DataProvider(),
       )
     ],
     child: const MyApp(),
@@ -26,7 +35,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const AuthScreen(),
+      home: const SplashScreen(),
     );
   }
 }
