@@ -62,7 +62,7 @@ Ensure the following software versions are installed:
 ## 📸 Preview
     Find screenshots and screen recordings of the app in the Docs folder:
 	•	Screenshots: Docs/screenshots/
-	•	Recordings: Docs/recordings/
+	•	Recordings: Docs/
 
 ## 🚀 Happy Coding!
     Feel free to contribute, suggest improvements, or raise issues. 🌟
