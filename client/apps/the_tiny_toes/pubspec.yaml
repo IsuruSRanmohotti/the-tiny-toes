@@ -1,5 +1,12 @@
 name: the_tiny_toes
 description: "A new Flutter project."
+
+project_info:
+  flutter_version: "3.24.3"
+  dart_version: "3.5.3" 
+  java_version: "1.8.0_431"
+
+
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
