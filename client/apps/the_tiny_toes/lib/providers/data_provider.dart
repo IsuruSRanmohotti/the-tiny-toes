@@ -14,6 +14,8 @@ class DataProvider extends ChangeNotifier {
   AlbumModel? get selectedAlbum => _selectedAlbum;
   List<PhotoModel> _selectedAlbumPhotos = [];
   List<PhotoModel> get selectedAlbumPhotos => _selectedAlbumPhotos;
+  PhotoModel? _selectedPhoto;
+  PhotoModel? get selectedPhoto => _selectedPhoto;
 
   String _currentPage = 'users';
   String get currentPage => _currentPage;
@@ -34,7 +36,7 @@ class DataProvider extends ChangeNotifier {
       _currentUserAlbums = [];
     } else if (page == 'album') {
       _selectedAlbumPhotos = [];
-    }
+    } else if (page == 'photoView') {}
     notifyListeners();
   }
 
@@ -50,6 +52,11 @@ class DataProvider extends ChangeNotifier {
 
   void setSelectedAlbumPhotos(List<PhotoModel> photos) {
     _selectedAlbumPhotos = photos;
+    notifyListeners();
+  }
+
+  void setSelectedPhoto(int index) {
+    _selectedPhoto = _selectedAlbumPhotos[index];
     notifyListeners();
   }
 }

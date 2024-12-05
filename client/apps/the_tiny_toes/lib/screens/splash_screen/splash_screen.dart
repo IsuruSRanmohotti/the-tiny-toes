@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_tiny_toes/providers/user_provider.dart';
 import 'package:the_tiny_toes/screens/auth_screen/auth_screen.dart';
-import 'package:the_tiny_toes/screens/users_screen/users_screen.dart';
+import 'package:the_tiny_toes/screens/main_screen/main_screen.dart';
 import 'package:the_tiny_toes/utils/shared_preferences_utils.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const UsersScreen(),
+                  builder: (context) => const MainScreen(),
                 ));
           }
         });

@@ -3,7 +3,7 @@ import 'package:the_tiny_toes/screens/auth_screen/auth_screen.dart';
 import 'package:the_tiny_toes/utils/custom_dialog.dart';
 import 'package:the_tiny_toes/utils/shared_preferences_utils.dart';
 
-import '../screens/users_screen/users_screen.dart';
+import '../screens/main_screen/main_screen.dart';
 
 class UserProvider extends ChangeNotifier {
   String? _currentUser;
@@ -42,7 +42,7 @@ class UserProvider extends ChangeNotifier {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const UsersScreen(),
+                  builder: (context) => const MainScreen(),
                 ));
           }
         },
